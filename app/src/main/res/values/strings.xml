@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">CS</string>
+
+    <string name="roll_no">Roll No</string>
+
+    <string name="open">Drawer Open</string>
+    <string name="close">Drawer Close</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="sign_up">Not a Member yet? Signup here</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="create_account">Create Account</string>
+    <string name="teacher">Teacher</string>
+    <string name="select_account">Select Account:</string>
+    <string name="student_account">Student Account</string>
+
+    <string name="confrim_password">Confrim Password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="student_name">Student Name</string>
+    <string name="exit">Exit</string>
+
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_chairman">Chairman</string>
+    <string name="menu_faculty">Faculty</string>
+    <string name="menu_result">Result</string>
+    <string name="menu_timetable">Time Table</string>
+    <string name="menu_about">About</string>
+    <string name="forget_password">Forget Password?</string>
+
+    <string name="back">Back</string>
+    <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
+    <string name="email_reset">Email</string>
+    <string name="dr_muhammad_saleem_vighio">Dr. Muhammad Saleem Vighio</string>
+    <string name="chairman_of_computer_science">Chairman of Computer Science</string>
+    <string name="quest_university_nawabshah">QUEST University Nawabshah</string>
+    <string name="email_saleemvighio_quest_edu_pk">Email: Saleemvighio@quest.edu.pk</string>
+    <string name="other_information">Other Information</string>
+    <string name="computer_science">Computer Science</string>
+    <string name="admin">Admin</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="sign_up_button">Sign Up</string>
+
+    <string name="year">Year</string>
+    <string name="batch">Batch</string>
+    <string name="semester">Semester:</string>
+    <string name="surname">Surname:</string>
+    <string name="department">Department:</string>
+    <string name="wellcome">Wellcome</string>
+</resources>
