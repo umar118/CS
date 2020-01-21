@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:showIn="navigation_view">
-
+    tools:showIn="navigation_view"
+    >
+    <menu />
+    <group android:checkableBehavior="single">
     <item android:id="@+id/nav_profile"
+          android:icon="@drawable/profile"
           android:title="Profile">
 
     </item>
     <item android:id="@+id/nav_chairman"
+
         android:title="Chairman">
         </item>
 
@@ -21,10 +25,13 @@
       </item>
 
     <item android:id="@+id/nav_result"
+
         android:title="Result">
     </item>
-
+    </group>
+<group android:checkableBehavior="single">
     <item android:id="@+id/nav_logout"
         android:title="Signout">
     </item>
+</group>
 </menu>

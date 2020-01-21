@@ -3,6 +3,7 @@ package com.example.cs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -24,37 +25,31 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileActivity extends Fragment {
+public class ProfileActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
     String currentUserID;
     private TextView rollno,name,surname,dep,batch,semes,year;
-    private CircleImageView NavProfileImage;
+    private ImageView UserProfile;
 
     @Override
    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  setContentView(R.layout.activity_profile);
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.activity_profile,null);
+       setContentView(R.layout.activity_profile);
 
         mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid();
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        NavProfileImage = (CircleImageView) v.findViewById(R.id.nav_profile_image);
-        rollno= v.findViewById(R.id.Rollno);
-        name= v.findViewById(R.id.Name);
-        surname= v.findViewById(R.id.Surname);
-        dep= v.findViewById(R.id.Department );
-        batch= v.findViewById(R.id.Batch);
-      semes= v.findViewById(R.id.Semester);
-       year= v.findViewById(R.id.Year);
+        UserProfile = (ImageView) findViewById(R.id.nav_profile_image);
+        rollno= findViewById(R.id.Rollno);
+        name= findViewById(R.id.Name);
+        surname= findViewById(R.id.Surname);
+        dep= findViewById(R.id.Department );
+        batch= findViewById(R.id.Batch);
+      semes= findViewById(R.id.Semester);
+       year= findViewById(R.id.Year);
 
        UsersRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
            @Override
@@ -64,7 +59,7 @@ public class ProfileActivity extends Fragment {
                    if (dataSnapshot.hasChild("profileimage")) {
                        //String image = "https://firebasestorage.googleapis.com/v0/b/poster-44926.appspot.com/o/Profile%20Images%2FjIR4L7pSWphSsBlBT8xu52FXI6L2.jpg?alt=media&token=86f09465-0562-4a00-ae15-1b5d9d94727b";
                        String image = dataSnapshot.child("profileimage").getValue().toString();
-                       Picasso.get().load(image).placeholder(R.drawable.profile).into(NavProfileImage);
+                       Picasso.get().load(image).placeholder(R.drawable.person).into(UserProfile);
                    }
 
                    if (dataSnapshot.hasChild("rollno")) {
@@ -116,6 +111,6 @@ public class ProfileActivity extends Fragment {
        });
 
 
-        return v;
+
     }
 }

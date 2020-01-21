@@ -31,44 +31,44 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Query query;
-
-    private FirebaseAuth mAuth;
-    private DatabaseReference UsersRef,HomeRef;
-    String currentUserID;
+   private Toolbar toolbar;
+   private DrawerLayout drawerLayout;
+   private NavigationView navigationView;
     private CircleImageView NavProfileImage;
     private TextView NavProfileUserName;
 
-    Toolbar toolbar;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
+
+    private FirebaseAuth mAuth;
+    private DatabaseReference UsersRef;
+    String currentUserID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar =findViewById(R.id.main_page_toolbar);
-        setSupportActionBar(toolbar);
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawable_layout);
-        actionBarDrawerToggle= new ActionBarDrawerToggle(MainActivity.this,drawerLayout,toolbar,R.string.open,R.string.close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        navigationView =findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
         mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid();
         UsersRef = FirebaseDatabase.getInstance().getReference("Users");
 
-        View navView = navigationView.inflateHeaderView(R.layout.navigation_header);
+        toolbar =findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
 
-        NavProfileImage = (CircleImageView) navigationView.getHeaderView(0).findViewById(R.id.nav_profile_image);
-        NavProfileUserName = (TextView) navView.findViewById(R.id.username);
+        drawerLayout =findViewById(R.id.drawerlayout);
+        ActionBarDrawerToggle toggle =new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+
+        navigationView =findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        //View navView = navigationView.inflateHeaderView(R.layout.navigation_header);
+        View navView =navigationView.getHeaderView(0);
+        NavProfileImage = (CircleImageView) navView.findViewById(R.id.profile_image);
+        NavProfileUserName =  (TextView) navView.findViewById(R.id.user_name);
 
 
         UsersRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
@@ -76,16 +76,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
+                    if (dataSnapshot.hasChild("fullname")) {
+                        String fullname = dataSnapshot.child("fullname").getValue().toString();
+                      //  Toast.makeText(MainActivity.this, "Name: "+fullname, Toast.LENGTH_LONG).show();
+                        NavProfileUserName.setText(fullname);
+                    }
                     if (dataSnapshot.hasChild("profileimage")) {
                         //String image = "https://firebasestorage.googleapis.com/v0/b/poster-44926.appspot.com/o/Profile%20Images%2FjIR4L7pSWphSsBlBT8xu52FXI6L2.jpg?alt=media&token=86f09465-0562-4a00-ae15-1b5d9d94727b";
                         String image = dataSnapshot.child("profileimage").getValue().toString();
-                        Picasso.get().load(image).placeholder(R.drawable.profile).into(NavProfileImage);
+                        Picasso.get().load(image).placeholder(R.drawable.profile_image).into(NavProfileImage);
+                     //   Picasso.with(MainActivity.this).load(image).placeholder(R.drawable.profile_image).into(NavProfileImage);
+
                     }
-                    if (dataSnapshot.hasChild("fullname")) {
-                        String fullname = dataSnapshot.child("fullname").getValue().toString();
-                        Toast.makeText(MainActivity.this, "Name: "+fullname, Toast.LENGTH_LONG).show();
-                        NavProfileUserName.setText(fullname);
-                    }
+
                     else {
                         Toast.makeText(MainActivity.this, "Profile name do not exists...", Toast.LENGTH_SHORT).show();
                     }
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+
 
 
     }
@@ -119,15 +123,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         finish();
     }
 
-    @Override
+
+   @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        FragmentManager manager =getSupportFragmentManager();
-        FragmentTransaction transaction =manager.beginTransaction();
+
         switch (menuItem.getItemId()){
             case R.id.nav_profile:
-                ProfileActivity profileActivity =new ProfileActivity();
-                transaction.replace(R.id.main_container,profileActivity);
-                transaction.commit();
+                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+
+               break;
             case  R.id.nav_chairman:
                return true;
 

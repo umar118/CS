@@ -56,4 +56,5 @@
     <string name="surname">Surname:</string>
     <string name="department">Department:</string>
     <string name="wellcome">Wellcome</string>
+    <string name="username">Username</string>
 </resources>
