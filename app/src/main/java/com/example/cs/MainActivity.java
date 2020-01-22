@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private CircleImageView NavProfileImage;
     private TextView NavProfileUserName;
 
+    private CardView exit,profile;
 
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
@@ -160,4 +162,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void Profile_Card(View view){
+        profile =findViewById(R.id.profile_card);
+        startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+    }
+    public void Exit_Card(View view){
+        exit =findViewById(R.id.exit_card);
+        finish();
+    }
+
 }
