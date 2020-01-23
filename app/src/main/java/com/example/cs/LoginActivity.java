@@ -2,6 +2,7 @@ package com.example.cs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Button loginButton;
+    private CardView loginButton;
     private EditText UserEmail, UserPassword;
     private FirebaseAuth mAuth;
     private ProgressDialog loadingBar;
@@ -36,9 +38,9 @@ public class LoginActivity extends AppCompatActivity {
 
         loadingBar= new ProgressDialog(this);
 
-        UserEmail = (EditText) findViewById(R.id.emailaddress);
-        UserPassword = (EditText) findViewById(R.id.Passtext);
-        loginButton = (Button) findViewById(R.id.buttonLogin);
+        UserEmail =  findViewById(R.id.emailaddress);
+        UserPassword =  findViewById(R.id.Passtext);
+        loginButton =  findViewById(R.id.buttonLogin);
 
 
         reset =findViewById(R.id.resettext);
@@ -140,5 +142,10 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(mainIntent);
             finish();
         }
+    }
+
+    public void Cancel(View view){
+        CardView cardView =findViewById(R.id.cancel);
+        finish();
     }
 }

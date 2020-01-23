@@ -2,6 +2,7 @@ package com.example.cs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -38,7 +39,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SetupActivity extends AppCompatActivity {
 
     private EditText UserName, FullName, Surname, Department,Batch,Semester,Year;
-    private Button SaveInformationbutton;
+    private CardView SaveInformationbutton;
     private CircleImageView ProfileImage;
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
@@ -66,7 +67,7 @@ public class SetupActivity extends AppCompatActivity {
         Semester =(EditText) findViewById(R.id.semester);
         Year=(EditText) findViewById(R.id.year);
 
-        SaveInformationbutton = (Button)findViewById(R.id.setup_information_button);
+        SaveInformationbutton = (CardView) findViewById(R.id.setup_information_button);
         ProfileImage = (CircleImageView) findViewById(R.id.setup_profile_image);
 
         SaveInformationbutton.setOnClickListener(new View.OnClickListener() {

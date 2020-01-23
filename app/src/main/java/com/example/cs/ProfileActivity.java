@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
     String currentUserID;
-    private TextView rollno,name,surname,dep,batch,semes,year;
+    private EditText rollno,name,surname,dep,batch,semes,year;
     private ImageView UserProfile;
 
     @Override
@@ -112,5 +114,9 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
+    }
+    public void CancelPro(View view){
+        CardView cardView =findViewById(R.id.cancelpro);
+        finish();
     }
 }

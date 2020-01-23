@@ -2,6 +2,7 @@ package com.example.cs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,7 +22,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText useremail,password,confirm_pass;
     private FirebaseAuth mAuth;
-    Button exit,signupbutton;
+
+    CardView signupbutton,exit;
     private ProgressDialog loadingBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -63,4 +63,7 @@
     <string name="f_18_bscs">F-18 BSCS</string>
     <string name="_18_bscs">18 BSCS</string>
     <string name="_17_bscs">17 BSCS</string>
+    <string name="update">Update</string>
+    <string name="savedbutton">Saved</string>
+
 </resources>
