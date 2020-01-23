@@ -59,7 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
                    if (dataSnapshot.hasChild("profileimage")) {
                        //String image = "https://firebasestorage.googleapis.com/v0/b/poster-44926.appspot.com/o/Profile%20Images%2FjIR4L7pSWphSsBlBT8xu52FXI6L2.jpg?alt=media&token=86f09465-0562-4a00-ae15-1b5d9d94727b";
                        String image = dataSnapshot.child("profileimage").getValue().toString();
-                       Picasso.get().load(image).placeholder(R.drawable.person).into(UserProfile);
+                       Picasso.get().load(image).placeholder(R.drawable.profile).into(UserProfile);
                    }
 
                    if (dataSnapshot.hasChild("rollno")) {

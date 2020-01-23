@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private CircleImageView NavProfileImage;
     private TextView NavProfileUserName;
 
-    private CardView exit,profile;
-
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
     String currentUserID;
@@ -52,7 +50,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid();
-        UsersRef = FirebaseDatabase.getInstance().getReference("Users");
+        UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+       // UsersRef = FirebaseDatabase.getInstance().getReference("Users");
+        //UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID);
 
         toolbar =findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView =findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         //View navView = navigationView.inflateHeaderView(R.layout.navigation_header);
-        View navView =navigationView.getHeaderView(0);
-        NavProfileImage = (CircleImageView) navView.findViewById(R.id.profile_image);
-        NavProfileUserName =  (TextView) navView.findViewById(R.id.user_name);
+       // View navView =navigationView.getHeaderView(0);
+        NavProfileImage = (CircleImageView) navigationView.getHeaderView(0).findViewById(R.id.profile_image);
+
+        NavProfileUserName =  (TextView) navigationView.getHeaderView(0).findViewById(R.id.user_name);
 
 
         UsersRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
@@ -78,19 +78,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
-                    if (dataSnapshot.hasChild("fullname")) {
-                        String fullname = dataSnapshot.child("fullname").getValue().toString();
-                      //  Toast.makeText(MainActivity.this, "Name: "+fullname, Toast.LENGTH_LONG).show();
-                        NavProfileUserName.setText(fullname);
-                    }
+
                     if (dataSnapshot.hasChild("profileimage")) {
                         //String image = "https://firebasestorage.googleapis.com/v0/b/poster-44926.appspot.com/o/Profile%20Images%2FjIR4L7pSWphSsBlBT8xu52FXI6L2.jpg?alt=media&token=86f09465-0562-4a00-ae15-1b5d9d94727b";
                         String image = dataSnapshot.child("profileimage").getValue().toString();
-                        Picasso.get().load(image).placeholder(R.drawable.profile_image).into(NavProfileImage);
+                        Picasso.get().load(image).placeholder(R.drawable.profile).into(NavProfileImage);
+
                      //   Picasso.with(MainActivity.this).load(image).placeholder(R.drawable.profile_image).into(NavProfileImage);
 
                     }
-
+                    if (dataSnapshot.hasChild("fullname")) {
+                        String fullname = dataSnapshot.child("fullname").getValue().toString();
+                        //  Toast.makeText(MainActivity.this, "Name: "+fullname, Toast.LENGTH_LONG).show();
+                        NavProfileUserName.setText(fullname);
+                    }
                     else {
                         Toast.makeText(MainActivity.this, "Profile name do not exists...", Toast.LENGTH_SHORT).show();
                     }
@@ -135,16 +136,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                break;
             case  R.id.nav_chairman:
-               return true;
+
+                startActivity(new Intent(MainActivity.this,ChairmanActivity.class));
+             break;
 
             case R.id.nav_faculty:
               //  Toast.makeText(this,"",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_table:
-               // Toast.makeText(this,"",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,TimetableActivity.class));
                 break;
             case R.id.nav_result:
-               // Toast.makeText(this,"",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,ResultsActivity.class));
 
                 break;
             case R.id.nav_logout:
@@ -164,11 +167,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void Profile_Card(View view){
-        profile =findViewById(R.id.profile_card);
+       CardView pro =(CardView) findViewById(R.id.profile_card);
         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
     }
+    public void Chairman_Card(View view){
+        CardView ch =findViewById(R.id.chairman_card);
+       startActivity(new Intent(MainActivity.this,ChairmanActivity.class));
+    }
     public void Exit_Card(View view){
-        exit =findViewById(R.id.exit_card);
+       CardView exit =findViewById(R.id.exit_card);
         finish();
     }
 

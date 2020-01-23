@@ -59,4 +59,8 @@
     <string name="username">Username</string>
     <string name="profile">Profile</string>
     <string name="exit">Exit</string>
+    <string name="_19_bscs">19 BSCS</string>
+    <string name="f_18_bscs">F-18 BSCS</string>
+    <string name="_18_bscs">18 BSCS</string>
+    <string name="_17_bscs">17 BSCS</string>
 </resources>
