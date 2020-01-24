@@ -11,7 +11,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+
         >
 
         <LinearLayout
@@ -72,7 +72,7 @@
                         android:id="@+id/Rollno"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:inputType="textPersonName"
                         android:layout_gravity="center"
                         android:textSize="17sp"
                         android:background="@null"
@@ -104,9 +104,9 @@
                         />
                     <EditText
                         android:id="@+id/Name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:inputType="textPersonName"
                         android:layout_gravity="center"
                         android:textSize="17sp"
                         android:background="@null"
@@ -139,9 +139,9 @@
                         />
                     <EditText
                         android:id="@+id/Surname"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:inputType="textPersonName"
                         android:layout_gravity="center"
                         android:textSize="17sp"
                         android:background="@null"
@@ -173,9 +173,9 @@
                         />
                     <EditText
                         android:id="@+id/Department"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:inputType="textPersonName"
                         android:layout_gravity="center"
                         android:textSize="17sp"
                         android:background="@null"
@@ -208,9 +208,9 @@
                         />
                     <EditText
                         android:id="@+id/Batch"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:inputType="textPersonName"
                         android:layout_gravity="center"
                         android:textSize="17sp"
                         android:background="@null"
@@ -242,9 +242,9 @@
                         />
                     <EditText
                         android:id="@+id/Semester"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:inputType="textPersonName"
                         android:layout_gravity="center"
                         android:textSize="17sp"
                         android:background="@null"
@@ -276,9 +276,9 @@
                         />
                     <EditText
                         android:id="@+id/Year"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:inputType="textPersonName"
                         android:layout_gravity="center"
                         android:textSize="17sp"
                         android:background="@null"
@@ -291,6 +291,7 @@
          android:layout_height="wrap_content"
          android:orientation="horizontal"
          android:layout_gravity="center"
+
          android:layout_marginTop="20dp"
 
          android:gravity="center">

@@ -65,5 +65,6 @@
     <string name="_17_bscs">17 BSCS</string>
     <string name="update">Update</string>
     <string name="savedbutton">Saved</string>
+    <string name="delete_account">Delete Account</string>
 
 </resources>

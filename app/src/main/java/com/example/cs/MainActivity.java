@@ -12,12 +12,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -71,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavProfileImage = (CircleImageView) navigationView.getHeaderView(0).findViewById(R.id.profile_image);
 
         NavProfileUserName =  (TextView) navigationView.getHeaderView(0).findViewById(R.id.user_name);
+
+
 
 
         UsersRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
@@ -127,6 +134,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+
+
    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
@@ -154,6 +163,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mAuth.signOut();
                 senduserTologinActivity();
                 break;
+            case R.id.nav_delete_account:
+
+              final   FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                AuthCredential authCredential = EmailAuthProvider.getCredential("user@example.com", "password1234");
+                FragmentManager manager =getSupportFragmentManager();
+                DeleteAccountDailogFragemt myDialogFragment =new DeleteAccountDailogFragemt();
+                myDialogFragment.show(manager,"DeleteAccountDialogFragment");
+                firebaseUser.reauthenticate(authCredential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                   // Log.d(, "User account deleted!");
+                                    Toast.makeText(MainActivity.this, "User account deleted", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
+
+                break;
             //case R.id.nav_exit:
             //    Toast.makeText(this,"",Toast.LENGTH_SHORT).show();
             //    finish();
@@ -166,6 +198,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+
+
     public void Profile_Card(View view){
        CardView pro =(CardView) findViewById(R.id.profile_card);
         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
@@ -176,7 +210,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     public void Exit_Card(View view){
        CardView exit =findViewById(R.id.exit_card);
-        finish();
+       FragmentManager manager =getSupportFragmentManager();
+       MyDialogFragment myDialogFragment =new MyDialogFragment();
+       myDialogFragment.show(manager,"MyDialogFragment");
     }
 
 }

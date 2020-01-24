@@ -240,6 +240,7 @@ public class SetupActivity extends AppCompatActivity {
             userMap.put("semester",semester);
             userMap.put("year",year);
 
+
             UsersRef.updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
                 @Override
                 public void onComplete(@NonNull Task task) {
