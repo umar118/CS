@@ -7,8 +7,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,32 +20,55 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    private CardView updateData;
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
     String currentUserID;
     private EditText rollno,name,surname,dep,batch,semes,year;
     private ImageView UserProfile;
 
+
     @Override
    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_profile);
+        ImageView imageView =(ImageView) findViewById(R.id.back);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid();
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+
+
+
 
         UserProfile = (ImageView) findViewById(R.id.nav_profile_image);
         rollno= findViewById(R.id.Rollno);
@@ -52,6 +78,15 @@ public class ProfileActivity extends AppCompatActivity {
         batch= findViewById(R.id.Batch);
       semes= findViewById(R.id.Semester);
        year= findViewById(R.id.Year);
+
+       updateData =findViewById(R.id.update);
+       updateData.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               startActivity(new Intent(ProfileActivity.this,UpdateProfileActivity.class));
+           }
+       });
+
 
        UsersRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
            @Override
@@ -114,7 +149,21 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
+
+
+
+
     }
+
+
+  /*  private void SendUserToMainActivity()
+    {
+        Intent mainIntent = new Intent(ProfileActivity.this, ProfileActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainIntent);
+        finish();
+    }
+*/
     public void CancelPro(View view){
         CardView cardView =findViewById(R.id.cancelpro);
         finish();

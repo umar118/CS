@@ -66,5 +66,11 @@
     <string name="update">Update</string>
     <string name="savedbutton">Saved</string>
     <string name="delete_account">Delete Account</string>
+    <string name="teacher_name">Teacher Name</string>
+    <string name="teaching_scale">Teaching Scale</string>
+
+
+    <string name="scale">Scale</string>
+    <string name="qualification">Qualification</string>
 
 </resources>

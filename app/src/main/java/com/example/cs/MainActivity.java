@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
     String currentUserID;
-
+    private CardView faculty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavProfileUserName =  (TextView) navigationView.getHeaderView(0).findViewById(R.id.user_name);
 
-
+        faculty =findViewById(R.id.facultycard);
+        faculty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,FacultyActivity.class));
+            }
+        });
 
 
         UsersRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
@@ -151,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_faculty:
               //  Toast.makeText(this,"",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,FacultyActivity.class));
                 break;
             case R.id.nav_table:
                 startActivity(new Intent(MainActivity.this,TimetableActivity.class));
