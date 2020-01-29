@@ -9,6 +9,31 @@
     tools:context=".AdminMainActivity">
 
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/colorPrimary"
+        android:layout_marginBottom="5dp"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Admin Homepage"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="italic"
+                android:layout_weight="1"
+                android:layout_gravity="right"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,44 +44,14 @@
         android:layout_marginTop="20dp"
 
         >
-        <androidx.cardview.widget.CardView
-            android:id="@+id/profile_card"
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/add_chairman"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
-            >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                >
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:gravity="center"
-                    android:src="@drawable/profile_image"
-                    android:layout_gravity="center"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:text="@string/profile"
-                    android:textStyle="bold"
-                    android:textSize="17sp"
-                    />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
 
             >
             <LinearLayout
@@ -84,19 +79,9 @@
                     />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-    </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-
-        >
         <androidx.cardview.widget.CardView
+            android:id="@+id/add_faculty"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
@@ -127,11 +112,26 @@
                     />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+
+        >
+
         <androidx.cardview.widget.CardView
+            android:id="@+id/add_timetable"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
 
             >
             <LinearLayout
@@ -158,18 +158,8 @@
                     />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-
-        >
         <androidx.cardview.widget.CardView
+            android:id="@+id/add_results"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
@@ -201,9 +191,51 @@
                     />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/add_other"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="@string/other_activities"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:id="@+id/exit_card"
-
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"

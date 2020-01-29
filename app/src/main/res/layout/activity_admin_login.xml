@@ -85,13 +85,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
+                    android:layout_marginTop="10dp"
 
                     >
                     <Button
                         android:id="@+id/button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:text="@string/login"
                         android:textColor="@color/white"
                         android:layout_marginRight="80dp"
@@ -102,7 +102,6 @@
                         android:id="@+id/button2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
                         android:text="@string/cancel"
                         android:gravity="center"
                         android:layout_gravity="center"

@@ -14,32 +14,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FacultyActivity"
-
-            >
-
-        </activity>
-        <activity android:name=".AddFacultyActivity">
+        <activity android:name=".AddTimeTableActivity"></activity>
+        <activity android:name=".Batch19TBActivity"></activity>
+        <activity android:name=".Batchf18Activity"></activity>
+        <activity android:name=".Batch18TBActivity">
 
         </activity>
-        <activity android:name=".UpdateProfileActivity" />
+        <activity android:name=".Batch17TBActivity"></activity>
+        <activity android:name=".ResultsActivity" />
+        <activity android:name=".AddResultActivity" />
+        <activity android:name=".StudentProfileActivity" />
+        <activity android:name=".FacultyActivity" />
         <activity android:name=".ChairmanActivity" />
         <activity android:name=".TimetableActivity" />
-        <activity android:name=".ResultsActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".AdminMainActivity" />
+        <activity android:name=".AdminMainActivity" >
+
+        </activity>
         <activity android:name=".AdminLoginActivity" />
         <activity android:name=".SetupActivity" />
         <activity android:name=".Reset_PasswordActivity" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity

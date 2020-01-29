@@ -7,7 +7,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -30,42 +32,54 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
-public class UpdateProfileActivity extends AppCompatActivity {
-
-    private EditText rollno,name,surname,dep,batch,semes,year;
-    private CircleImageView UserProfile;
+public class AddResultActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
-    String currentUserID;
     private ProgressDialog loadingBar;
+    String currentUserID;
     private StorageReference UserProfileImageRef;
     final static int Gallery_Pick =1;
+
+
+
+    EditText sems,year,batch;
+    Button save;
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_profile);
+        setContentView(R.layout.activity_add_result);
+
         loadingBar= new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
-        currentUserID = mAuth.getCurrentUser().getUid();
-        UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID);
-        UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
+        UsersRef = FirebaseDatabase.getInstance().getReference().child("Result");
+        UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("Results");
 
 
-        UserProfile = (CircleImageView) findViewById(R.id.profile_image);
-        rollno= findViewById(R.id.Rollno);
-        name= findViewById(R.id.Name);
-        surname= findViewById(R.id.Surname);
-        dep= findViewById(R.id.Department );
-        batch= findViewById(R.id.Batch);
-        semes= findViewById(R.id.semester);
-        year= findViewById(R.id.year);
+        imageView =(ImageView) findViewById(R.id.imageView);
+        sems =(EditText) findViewById(R.id.editText);
+        year =(EditText) findViewById(R.id.editText2);
+        batch=(EditText) findViewById(R.id.editText3);
 
+        save =(Button) findViewById(R.id.button3);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveResult();
+                finish();
+            }
+        });
 
+        ImageView imagei =(ImageView) findViewById(R.id.back);
+        imagei.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
-        UserProfile.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -83,14 +97,10 @@ public class UpdateProfileActivity extends AppCompatActivity {
             {
                 if(dataSnapshot.exists())
                 {
-                    if (dataSnapshot.hasChild("profileimage"))
+                    if (dataSnapshot.hasChild("result_image"))
                     {
-                        String image = dataSnapshot.child("profileimage").getValue().toString();
-                        Picasso.get().load(image).placeholder(R.drawable.profile).into(UserProfile);
-                    }
-                    else
-                    {
-                        Toast.makeText(UpdateProfileActivity.this, "Please select profile image first.", Toast.LENGTH_SHORT).show();
+                        String image = dataSnapshot.child("result_image").getValue().toString();
+                        Picasso.get().load(image).into(imageView);
                     }
                 }
             }
@@ -112,7 +122,6 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
             CropImage.activity(ImageUri)
                     .setGuidelines(CropImageView.Guidelines.ON)
-                    .setAspectRatio(1, 1)
                     .start(this);
         }
 
@@ -120,8 +129,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
             if (resultCode == RESULT_OK) {
-                loadingBar.setTitle("Profile Image");
-                loadingBar.setMessage("Please wait, while we updating your profile image...");
+                loadingBar.setTitle("Result");
+                loadingBar.setMessage("Please wait, while we updating your Result ...");
                 loadingBar.show();
                 loadingBar.setCanceledOnTouchOutside(true);
 
@@ -142,22 +151,22 @@ public class UpdateProfileActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful()) {
                             Uri downUri = task.getResult();
-                            Toast.makeText(UpdateProfileActivity.this, "Profile Image stored successfully to Firebase storage...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddResultActivity.this, "Result Image stored successfully to Firebase storage...", Toast.LENGTH_SHORT).show();
                             final String downloadUrl = downUri.toString();
-                            UsersRef.child("profileimage").setValue(downloadUrl)
+                            UsersRef.child("result_image").setValue(downloadUrl)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                Intent selfIntent = new Intent(UpdateProfileActivity.this, UpdateProfileActivity.class);
+                                                Intent selfIntent = new Intent(AddResultActivity.this, AddResultActivity.class);
                                                 startActivity(selfIntent);
 
-                                                Toast.makeText(UpdateProfileActivity.this, "Profile Image stored to Firebase Database Successfully...", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(AddResultActivity.this, "Result Image stored to Firebase Database Successfully...", Toast.LENGTH_SHORT).show();
                                                 loadingBar.dismiss();
                                             } else {
                                                 String message = task.getException().getMessage();
-                                                Toast.makeText(UpdateProfileActivity.this, "Error Occured: " + message, Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(AddResultActivity.this, "Error Occured: " + message, Toast.LENGTH_SHORT).show();
                                                 loadingBar.dismiss();
                                             }
                                         }
@@ -170,53 +179,44 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
             }
         }
-
     }
 
 
-    private void UpdateProfile() {
+    private void SaveResult() {
 
-        String Username = rollno.getText().toString();
-        String full_name = name.getText().toString();
-        String Surname = surname.getText().toString();
-        String department = dep.getText().toString();
-        String Batch = batch.getText().toString();
-        String semester = semes.getText().toString();
+        String Semester = sems.getText().toString();
         String Year = year.getText().toString();
+        String Batch = batch.getText().toString();
 
-
-        loadingBar.setTitle("Update Profile");
+        loadingBar.setTitle("Saving Information");
         loadingBar.setMessage("Please Wait, while we are your new account...");
         loadingBar.show();
         loadingBar.setCanceledOnTouchOutside(true);
 
-
         HashMap userMap = new HashMap();
-        userMap.put("rollno", Username);
-        userMap.put("fullname", full_name);
-        userMap.put("surname", Surname);
-        userMap.put("department", department);
-        userMap.put("batch", Batch);
-        userMap.put("semester", semester);
-        userMap.put("year", Year);
-
+        userMap.put("Semester", Semester);
+        userMap.put("Year", Year);
+        userMap.put("Batch", Batch);
 
         UsersRef.updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
             @Override
             public void onComplete(@NonNull Task task) {
 
                 if (task.isSuccessful()) {
-                    // SendUserToMainActivity();
-                    Toast.makeText(UpdateProfileActivity.this, "your account has updated succesfully", Toast.LENGTH_LONG).show();
+                    //SendUserToMainActivity();
+                    Toast.makeText(AddResultActivity.this, "your account is created succesfully", Toast.LENGTH_LONG).show();
                     loadingBar.dismiss();
 
                 } else {
                     String message = task.getException().getMessage();
-                    Toast.makeText(UpdateProfileActivity.this, "Error occured: " + message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddResultActivity.this, "Error occured: " + message, Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }
 
             }
         });
+
     }
+
+
 }

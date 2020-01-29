@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (menuItem.getItemId()){
             case R.id.nav_profile:
-                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                startActivity(new Intent(MainActivity.this,StudentProfileActivity.class));
 
                break;
             case  R.id.nav_chairman:
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this,TimetableActivity.class));
                 break;
             case R.id.nav_result:
-                startActivity(new Intent(MainActivity.this,ResultsActivity.class));
+               startActivity(new Intent(MainActivity.this,ResultsActivity.class));
 
                 break;
             case R.id.nav_logout:
@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void Profile_Card(View view){
        CardView pro =(CardView) findViewById(R.id.profile_card);
-        startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+        startActivity(new Intent(MainActivity.this,StudentProfileActivity.class));
     }
     public void Chairman_Card(View view){
         CardView ch =findViewById(R.id.chairman_card);
@@ -221,5 +221,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
        MyDialogFragment myDialogFragment =new MyDialogFragment();
        myDialogFragment.show(manager,"MyDialogFragment");
     }
+    public void Result(View view){
+
+        CardView re= findViewById(R.id.results);
+        startActivity(new Intent(MainActivity.this,ResultsActivity.class));
+
+    }
+    public void TimeTable (View view){
+
+        CardView ti=findViewById(R.id.timetable);
+        startActivity(new Intent(MainActivity.this,TimetableActivity.class));
+
+    }
+
 
 }

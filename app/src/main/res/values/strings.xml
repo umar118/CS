@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CS</string>
+    <string name="app_name">Computer Science</string>
 
     <string name="roll_no">Roll No</string>
 
@@ -72,5 +72,14 @@
 
     <string name="scale">Scale</string>
     <string name="qualification">Qualification</string>
+    <string name="capture_image">Capture Image</string>
+    <string name="other_activities">Other Activities</string>
+    <string name="batch_19_bscs">Batch: 19 BSCS</string>
+    <string name="batch_18_bscs">Batch: 18 BSCS</string>
+    <string name="add_time_table_for_17_batch">Add Time Table For 17 Batch</string>
+    <string name="add_time_table">Add Time Table</string>
+    <string name="add_result">Add Result</string>
+    <string name="year_result">Year:</string>
+    <string name="batch_result">Batch:</string>
 
 </resources>

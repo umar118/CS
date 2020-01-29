@@ -155,6 +155,8 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:id="@+id/timetable"
+            android:onClick="TimeTable"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
@@ -197,6 +199,8 @@
 
         >
         <androidx.cardview.widget.CardView
+            android:id="@+id/results"
+            android:onClick="Result"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
