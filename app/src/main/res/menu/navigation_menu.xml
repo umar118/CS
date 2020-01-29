@@ -7,17 +7,19 @@
     <menu />
     <group android:checkableBehavior="single">
     <item android:id="@+id/nav_profile"
-          android:icon="@drawable/profile"
+         android:icon="@drawable/person"
           android:title="Profile">
 
     </item>
     <item android:id="@+id/nav_chairman"
-
+        android:icon="@drawable/person"
         android:title="Chairman">
         </item>
 
     <item android:id="@+id/nav_faculty"
-        android:title="Faculty">
+        android:title="Faculty"
+
+        >
        </item>
 
     <item android:id="@+id/nav_table"
@@ -28,6 +30,10 @@
 
         android:title="Result">
     </item>
+        <item android:id="@+id/nav_other"
+
+            android:title="@string/others">
+        </item>
     </group>
 
 <group android:checkableBehavior="single">

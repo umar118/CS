@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -184,8 +185,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                   // Log.d(, "User account deleted!");
+
                                     Toast.makeText(MainActivity.this, "User account deleted", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
                                 }
                             }
                         });
@@ -193,10 +195,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 });
 
                 break;
-            //case R.id.nav_exit:
-            //    Toast.makeText(this,"",Toast.LENGTH_SHORT).show();
+            case R.id.nav_other:
+                    startActivity(new Intent(MainActivity.this,OtherActivity.class));
             //    finish();
-            //    break;
+                break;
 
         }
 

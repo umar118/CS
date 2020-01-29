@@ -44,7 +44,7 @@
     <string name="chairman_of_computer_science">Chairman of Computer Science</string>
     <string name="quest_university_nawabshah">QUEST University Nawabshah</string>
     <string name="email_saleemvighio_quest_edu_pk">Email: Saleemvighio@quest.edu.pk</string>
-    <string name="other_information">Other Information</string>
+
     <string name="computer_science">Computer Science</string>
     <string name="admin">Admin</string>
     <string name="reset_password">Reset Password</string>
@@ -81,5 +81,8 @@
     <string name="add_result">Add Result</string>
     <string name="year_result">Year:</string>
     <string name="batch_result">Batch:</string>
+    <string name="other_information">Other Information</string>
+    <string name="some_write_about_taken_picture">Some write about taken picture</string>
+    <string name="others">Others</string>
 
 </resources>
